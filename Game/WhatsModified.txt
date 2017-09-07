@@ -1,0 +1,16 @@
+CameraController
+	field loading changed from private to public
+---------------------------------------------------------------------------------
+SavedGame
+	field _savedGame changed from private to public
+---------------------------------------------------------------------------------
+MenuPrefabLoader
+	method OnApplicationFocus() removed all code
+	method OnApplicationPause() removed all code
+	method Update() added TAS.Manager.UpdateInputs()
+---------------------------------------------------------------------------------
+TeslagradInput
+	method GetKey() added:
+		if (TAS.Manager.Running && !TAS.Manager.Recording) {
+			return TAS.Manager.GetInput(type);
+		}
