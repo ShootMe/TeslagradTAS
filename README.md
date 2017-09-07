@@ -35,6 +35,7 @@ While in game
 - When NOT Playing Back
   - Save Game - DPad Up (Saves abilities, checkpoint)
   - Load Game - DPad Down (Loads the saved state and brings you back to the main menu so you can reload the game with that state)
+  - Kill Player - DPad Right
 - When Playing Back
   - Playback: Right Stick
   - Stop: Right Stick
