@@ -12,7 +12,8 @@ namespace TAS {
 		FrameStep = 4,
 		Disable = 8,
 		Save = 16,
-		Load = 32
+		Load = 32,
+		Kill = 64
 	}
 	public class Manager {
 		[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
@@ -201,6 +202,7 @@ namespace TAS {
 			bool rightStick = xbox.IsRightStickPressed || openBracket || closeBrackets;
 			bool dpadDown = xbox.IsDPadDownPressed;
 			bool dpadUp = xbox.IsDPadUpPressed;
+			bool dpadRight = xbox.IsDPadRightPressed || (IsKeyDown(Keys.ControlKey) && IsKeyDown(Keys.K));
 
 			if (!HasFlag(state, State.Enable) && rightStick) {
 				nextState |= State.Enable;
@@ -212,6 +214,8 @@ namespace TAS {
 				nextState |= State.Save;
 			} else if (!HasFlag(state, State.Enable) && !HasFlag(state, State.Record) && dpadDown) {
 				nextState |= State.Load;
+			} else if (!HasFlag(state, State.Enable) && !HasFlag(state, State.Record) && dpadRight) {
+				nextState |= State.Kill;
 			}
 
 			if (!rightStick && HasFlag(nextState, State.Enable)) {
@@ -231,6 +235,11 @@ namespace TAS {
 					SavedGame.SaveBossDefeat((Boss)0);
 					Scene.allScenes.Clear();
 					Application.LoadLevel("100 Menu Cutscene");
+				}
+			} else if (!dpadRight && HasFlag(nextState, State.Kill)) {
+				nextState &= ~State.Kill;
+				if (Player.player != null) {
+					Player.player.Die(CauseOfDeath.KillZone, true);
 				}
 			}
 		}
