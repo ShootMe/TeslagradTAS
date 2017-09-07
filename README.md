@@ -5,7 +5,7 @@ Simple TAS Tools for the game Teslagrad
 - Go to [Releases](https://github.com/ShootMe/TeslagradTAS/releases)
 - Download Assembly-Boo.dll, Assembly-Boo-Addons.dll, J2i.Net.XInputWrapper.dll, and XInputInterface.dll
 - Place those in your Teslagrad game data directory (usually C:\Program Files (x86)\Steam\steamapps\common\Teslagrad\Teslagrad_Data\Managed\)
-- Make sure to back up the original Assembly-CSharp.dll and UnityEngine.dll before copying. (Can rename them .bak or something)
+- Make sure to back up the original Assembly-Boo.dll before copying. (Can rename to .bak or something)
 
 ## Input File
 Input file is called Teslagrad.tas and needs to be in the main Teslagrad directory (usually C:\Program Files (x86)\Steam\steamapps\common\Teslagrad\Teslagrad.tas)
